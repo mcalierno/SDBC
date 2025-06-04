@@ -28,12 +28,9 @@ Unzip file: StudioDisplayBrightnessController.zip from Release section
 Run program StudioDisplayBrightnessController.exe
 
 
-Investigating issues:
-Ambient light sensor not working - as a result in the checking cycle:
-- light sensor returns 0
-- previously set min (in 'Settings' window) > 0
-- new = previously set min
-- nothing changes
+Investigating issues on startup:
+Ambient light sensor not working until light change
+monitor goes to lowest setting before slowly climbing
 
 Related:
 Previously set min is forgotten when reopening 'Settings'
