@@ -259,6 +259,25 @@ namespace StudioDisplayBrightnessController
             }
         }
 
-       
+
+
+        private void enableAutomaticBrightness_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox checkBox = sender as CheckBox;
+
+            if (checkBox.Checked)
+            {
+                Logs.logInfo("Automatic brightness enabled.");
+            }
+            else
+            {
+                Logs.logInfo("Automatic brightness disabled.");
+            }
+        }
+
+        private void trackBar2_Scroll(object sender, EventArgs e)
+        {
+
+        }
     }
 }
