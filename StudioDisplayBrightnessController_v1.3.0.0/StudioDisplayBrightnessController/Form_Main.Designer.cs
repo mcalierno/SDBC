@@ -52,11 +52,11 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.timerUpdateMonitorConnectionState = new System.Windows.Forms.Timer(this.components);
             this.timerProgramStart = new System.Windows.Forms.Timer(this.components);
-            this.trackBar2 = new System.Windows.Forms.TrackBar();
+            this.trackBar3 = new System.Windows.Forms.TrackBar();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar3)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -185,7 +185,7 @@
             // 
             this.checkBox1.AutoSize = true;
             this.checkBox1.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.checkBox1.Location = new System.Drawing.Point(29, 243);
+            this.checkBox1.Location = new System.Drawing.Point(29, 251);
             this.checkBox1.Margin = new System.Windows.Forms.Padding(6);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(316, 29);
@@ -272,16 +272,18 @@
             this.timerProgramStart.Interval = 2000;
             this.timerProgramStart.Tick += new System.EventHandler(this.timerProgramStart_Tick);
             // 
-            // trackBar2
+            // trackBar3
             // 
-            this.trackBar2.AccessibleDescription = "Brightness level:";
-            this.trackBar2.AccessibleName = "Brightness level:";
-            this.trackBar2.Location = new System.Drawing.Point(30, 292);
-            this.trackBar2.Name = "trackBar2";
-            this.trackBar2.Size = new System.Drawing.Size(946, 90);
-            this.trackBar2.TabIndex = 17;
-            this.trackBar2.TickFrequency = 20;
-            this.trackBar2.Scroll += new System.EventHandler(this.trackBar2_Scroll);
+            this.trackBar3.LargeChange = 50;
+            this.trackBar3.Location = new System.Drawing.Point(29, 298);
+            this.trackBar3.Margin = new System.Windows.Forms.Padding(6);
+            this.trackBar3.Maximum = 1000;
+            this.trackBar3.Name = "trackBar3";
+            this.trackBar3.Size = new System.Drawing.Size(946, 90);
+            this.trackBar3.SmallChange = 10;
+            this.trackBar3.TabIndex = 18;
+            this.trackBar3.TabStop = false;
+            this.trackBar3.TickFrequency = 20;
             // 
             // Form_Main
             // 
@@ -289,7 +291,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1018, 456);
             this.ControlBox = false;
-            this.Controls.Add(this.trackBar2);
+            this.Controls.Add(this.trackBar3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.progressBar2);
@@ -319,7 +321,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -349,7 +351,7 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Timer timerUpdateMonitorConnectionState;
         private System.Windows.Forms.Timer timerProgramStart;
-        private System.Windows.Forms.TrackBar trackBar2;
+        private System.Windows.Forms.TrackBar trackBar3;
     }
 }
 

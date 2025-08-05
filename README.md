@@ -28,6 +28,9 @@ Unzip file: StudioDisplayBrightnessController_v1.3.0.0.zip from Release section
 Run program StudioDisplayBrightnessController.exe
 
 
+### Changes in this fork:
+Add enable brightness toggle and slider to settings pane.
+
 Investigating issues on startup:
 Ambient light sensor not working until light change
 monitor goes to lowest setting before slowly climbing
