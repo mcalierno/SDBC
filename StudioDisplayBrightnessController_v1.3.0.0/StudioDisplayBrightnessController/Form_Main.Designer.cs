@@ -34,16 +34,16 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.trackBar1 = new System.Windows.Forms.TrackBar();
+            this.automaticTrackBar = new System.Windows.Forms.TrackBar();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.label5 = new System.Windows.Forms.Label();
+            this.automaticBrightnessValue = new System.Windows.Forms.Label();
             this.timerUpdateInterface = new System.Windows.Forms.Timer(this.components);
-            this.label8 = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.automaticBrightnessLabel = new System.Windows.Forms.Label();
+            this.enableCheckBox = new System.Windows.Forms.CheckBox();
             this.button1 = new System.Windows.Forms.Button();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.progressBar2 = new System.Windows.Forms.ProgressBar();
@@ -52,27 +52,30 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.timerUpdateMonitorConnectionState = new System.Windows.Forms.Timer(this.components);
             this.timerProgramStart = new System.Windows.Forms.Timer(this.components);
-            this.trackBar3 = new System.Windows.Forms.TrackBar();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
+            this.manualTrackBar = new System.Windows.Forms.TrackBar();
+            this.manualBrightnessLabel = new System.Windows.Forms.Label();
+            this.manualBrightnessValue = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.automaticTrackBar)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.manualTrackBar)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(24, 35);
             this.label1.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(196, 25);
+            this.label1.Size = new System.Drawing.Size(215, 25);
             this.label1.TabIndex = 0;
             this.label1.Text = "Monitor brightness:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(614, 35);
+            this.label2.Location = new System.Drawing.Point(644, 35);
             this.label2.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label2.Name = "label2";
             this.label2.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -84,17 +87,18 @@
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(24, 77);
             this.label3.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(202, 25);
+            this.label3.Size = new System.Drawing.Size(221, 25);
             this.label3.TabIndex = 2;
             this.label3.Text = "Ambient brightness:";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(614, 77);
+            this.label4.Location = new System.Drawing.Point(644, 77);
             this.label4.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(24, 25);
@@ -102,19 +106,19 @@
             this.label4.Text = "0";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // trackBar1
+            // automaticTrackBar
             // 
-            this.trackBar1.LargeChange = 50;
-            this.trackBar1.Location = new System.Drawing.Point(30, 131);
-            this.trackBar1.Margin = new System.Windows.Forms.Padding(6);
-            this.trackBar1.Maximum = 1000;
-            this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(946, 90);
-            this.trackBar1.SmallChange = 10;
-            this.trackBar1.TabIndex = 4;
-            this.trackBar1.TabStop = false;
-            this.trackBar1.TickFrequency = 20;
-            this.trackBar1.ValueChanged += new System.EventHandler(this.trackBar1_ValueChanged);
+            this.automaticTrackBar.LargeChange = 50;
+            this.automaticTrackBar.Location = new System.Drawing.Point(30, 131);
+            this.automaticTrackBar.Margin = new System.Windows.Forms.Padding(6);
+            this.automaticTrackBar.Maximum = 1000;
+            this.automaticTrackBar.Name = "automaticTrackBar";
+            this.automaticTrackBar.Size = new System.Drawing.Size(946, 90);
+            this.automaticTrackBar.SmallChange = 10;
+            this.automaticTrackBar.TabIndex = 4;
+            this.automaticTrackBar.TabStop = false;
+            this.automaticTrackBar.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.automaticTrackBar.ValueChanged += new System.EventHandler(this.automaticTrackBar_ValueChanged);
             // 
             // notifyIcon1
             // 
@@ -156,43 +160,44 @@
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
-            // label5
+            // automaticBrightnessValue
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(327, 192);
-            this.label5.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(24, 25);
-            this.label5.TabIndex = 6;
-            this.label5.Text = "0";
+            this.automaticBrightnessValue.AutoSize = true;
+            this.automaticBrightnessValue.Location = new System.Drawing.Point(341, 181);
+            this.automaticBrightnessValue.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.automaticBrightnessValue.Name = "automaticBrightnessValue";
+            this.automaticBrightnessValue.Size = new System.Drawing.Size(24, 25);
+            this.automaticBrightnessValue.TabIndex = 6;
+            this.automaticBrightnessValue.Text = "0";
             // 
             // timerUpdateInterface
             // 
             this.timerUpdateInterface.Interval = 200;
             this.timerUpdateInterface.Tick += new System.EventHandler(this.timerUpdateInterface_Tick);
             // 
-            // label8
+            // automaticBrightnessLabel
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(55, 192);
-            this.label8.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(270, 25);
-            this.label8.TabIndex = 10;
-            this.label8.Text = "Automatic brightness level:";
+            this.automaticBrightnessLabel.AutoSize = true;
+            this.automaticBrightnessLabel.Location = new System.Drawing.Point(69, 181);
+            this.automaticBrightnessLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.automaticBrightnessLabel.Name = "automaticBrightnessLabel";
+            this.automaticBrightnessLabel.Size = new System.Drawing.Size(270, 25);
+            this.automaticBrightnessLabel.TabIndex = 10;
+            this.automaticBrightnessLabel.Text = "Automatic brightness level:";
             // 
-            // checkBox1
+            // enableCheckBox
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.checkBox1.Location = new System.Drawing.Point(29, 251);
-            this.checkBox1.Margin = new System.Windows.Forms.Padding(6);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(316, 29);
-            this.checkBox1.TabIndex = 16;
-            this.checkBox1.Text = "Enable automatic brightness";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.enableAutomaticBrightness_CheckedChanged);
+            this.enableCheckBox.AutoSize = true;
+            this.enableCheckBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.enableCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            this.enableCheckBox.Location = new System.Drawing.Point(20, 255);
+            this.enableCheckBox.Margin = new System.Windows.Forms.Padding(6);
+            this.enableCheckBox.Name = "enableCheckBox";
+            this.enableCheckBox.Size = new System.Drawing.Size(359, 30);
+            this.enableCheckBox.TabIndex = 16;
+            this.enableCheckBox.Text = "Automatic brightness enabled";
+            this.enableCheckBox.UseVisualStyleBackColor = true;
+            this.enableCheckBox.CheckedChanged += new System.EventHandler(this.enableAutomaticBrightness_CheckedChanged);
             // 
             // button1
             // 
@@ -207,7 +212,7 @@
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(228, 46);
+            this.progressBar1.Location = new System.Drawing.Point(258, 46);
             this.progressBar1.Margin = new System.Windows.Forms.Padding(6);
             this.progressBar1.MarqueeAnimationSpeed = 0;
             this.progressBar1.Maximum = 10000;
@@ -218,7 +223,7 @@
             // 
             // progressBar2
             // 
-            this.progressBar2.Location = new System.Drawing.Point(228, 88);
+            this.progressBar2.Location = new System.Drawing.Point(258, 88);
             this.progressBar2.Margin = new System.Windows.Forms.Padding(6);
             this.progressBar2.MarqueeAnimationSpeed = 0;
             this.progressBar2.Maximum = 1000000;
@@ -272,18 +277,37 @@
             this.timerProgramStart.Interval = 2000;
             this.timerProgramStart.Tick += new System.EventHandler(this.timerProgramStart_Tick);
             // 
-            // trackBar3
+            // manualTrackBar
             // 
-            this.trackBar3.LargeChange = 50;
-            this.trackBar3.Location = new System.Drawing.Point(29, 298);
-            this.trackBar3.Margin = new System.Windows.Forms.Padding(6);
-            this.trackBar3.Maximum = 1000;
-            this.trackBar3.Name = "trackBar3";
-            this.trackBar3.Size = new System.Drawing.Size(946, 90);
-            this.trackBar3.SmallChange = 10;
-            this.trackBar3.TabIndex = 18;
-            this.trackBar3.TabStop = false;
-            this.trackBar3.TickFrequency = 20;
+            this.manualTrackBar.Location = new System.Drawing.Point(29, 297);
+            this.manualTrackBar.Margin = new System.Windows.Forms.Padding(6);
+            this.manualTrackBar.Maximum = 100;
+            this.manualTrackBar.Name = "manualTrackBar";
+            this.manualTrackBar.Size = new System.Drawing.Size(946, 90);
+            this.manualTrackBar.TabIndex = 18;
+            this.manualTrackBar.TabStop = false;
+            this.manualTrackBar.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.manualTrackBar.ValueChanged += new System.EventHandler(this.manualTrackBar_ValueChanged);
+            // 
+            // manualBrightnessLabel
+            // 
+            this.manualBrightnessLabel.AutoSize = true;
+            this.manualBrightnessLabel.Location = new System.Drawing.Point(69, 360);
+            this.manualBrightnessLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.manualBrightnessLabel.Name = "manualBrightnessLabel";
+            this.manualBrightnessLabel.Size = new System.Drawing.Size(246, 25);
+            this.manualBrightnessLabel.TabIndex = 19;
+            this.manualBrightnessLabel.Text = "Manual brightness level:";
+            // 
+            // manualBrightnessValue
+            // 
+            this.manualBrightnessValue.AutoSize = true;
+            this.manualBrightnessValue.Location = new System.Drawing.Point(336, 360);
+            this.manualBrightnessValue.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.manualBrightnessValue.Name = "manualBrightnessValue";
+            this.manualBrightnessValue.Size = new System.Drawing.Size(24, 25);
+            this.manualBrightnessValue.TabIndex = 20;
+            this.manualBrightnessValue.Text = "0";
             // 
             // Form_Main
             // 
@@ -291,17 +315,19 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1018, 456);
             this.ControlBox = false;
-            this.Controls.Add(this.trackBar3);
+            this.Controls.Add(this.manualBrightnessValue);
+            this.Controls.Add(this.manualBrightnessLabel);
+            this.Controls.Add(this.manualTrackBar);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.progressBar2);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.automaticBrightnessLabel);
+            this.Controls.Add(this.enableCheckBox);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.trackBar1);
+            this.Controls.Add(this.automaticBrightnessValue);
+            this.Controls.Add(this.automaticTrackBar);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -318,10 +344,10 @@
             this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.VisibleChanged += new System.EventHandler(this.Form1_VisibleChanged);
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.automaticTrackBar)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.manualTrackBar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -333,14 +359,14 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TrackBar trackBar1;
+        private System.Windows.Forms.TrackBar automaticTrackBar;
         private System.Windows.Forms.NotifyIcon notifyIcon1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label automaticBrightnessValue;
         private System.Windows.Forms.Timer timerUpdateInterface;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Label automaticBrightnessLabel;
+        private System.Windows.Forms.CheckBox enableCheckBox;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
@@ -351,7 +377,9 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Timer timerUpdateMonitorConnectionState;
         private System.Windows.Forms.Timer timerProgramStart;
-        private System.Windows.Forms.TrackBar trackBar3;
+        private System.Windows.Forms.TrackBar manualTrackBar;
+        private System.Windows.Forms.Label manualBrightnessLabel;
+        private System.Windows.Forms.Label manualBrightnessValue;
     }
 }
 
