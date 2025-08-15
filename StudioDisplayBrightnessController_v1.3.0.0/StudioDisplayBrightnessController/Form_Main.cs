@@ -63,8 +63,12 @@ namespace StudioDisplayBrightnessController
 
         private void InitUserInterface()
         {
-            trackBar1.Value = Properties.Settings.Default.AutomaticBrightnessLevel;
-            label5.Text = Properties.Settings.Default.AutomaticBrightnessLevel.ToString();
+            automaticTrackBar.Value = Properties.Settings.Default.AutomaticBrightnessLevel;
+            automaticBrightnessValue.Text = Properties.Settings.Default.AutomaticBrightnessLevel.ToString();
+            enableCheckBox.Checked = Properties.Settings.Default.automaticBrightnessEnabled;
+            manualTrackBar.Enabled = !Properties.Settings.Default.automaticBrightnessEnabled;
+            manualTrackBar.Value = Properties.Settings.Default.manualBrightness/100; // scale to 0-100
+            manualBrightnessValue.Text = (Properties.Settings.Default.manualBrightness/100).ToString();
         }
 
         private void InitThreadWorker()
@@ -73,6 +77,8 @@ namespace StudioDisplayBrightnessController
             ThreadWorker.userMaxMonitorBrightness = Properties.Settings.Default.MaxMonitorBrightness;
             ThreadWorker.userAutomaticBrightnessLevelFactor = Properties.Settings.Default.AutomaticBrightnessLevelFactor;
             ThreadWorker.userAmbientLightGammaCorrectionFactor = Properties.Settings.Default.AmbientLightGammaCorrectionFactor;
+            ThreadWorker.automaticBrightnessEnabled = Properties.Settings.Default.automaticBrightnessEnabled;
+            ThreadWorker.manualBrightness = Properties.Settings.Default.manualBrightness;
         }
 
 
@@ -160,17 +166,17 @@ namespace StudioDisplayBrightnessController
             System.Diagnostics.Process.Start("https://www.buymeacoffee.com/krzysztof.sk");
         }
 
-        private void trackBar1_ValueChanged(object sender, EventArgs e)
+        private void automaticTrackBar_ValueChanged(object sender, EventArgs e)
         {
             // przeskalowanie liniowe zakresu wejściowego [0 : 1000] na zakres [0.1 : 10]
-            double intermediateValue = 2d * (trackBar1.Value / 1000d) - 1d;  // przeskalowanie pierwotnego zakresu [0 : 1000] do zakresu [-1 : 1]
+            double intermediateValue = 2d * (automaticTrackBar.Value / 1000d) - 1d;  // przeskalowanie pierwotnego zakresu [0 : 1000] do zakresu [-1 : 1]
             float gamma = (float)Math.Pow(10, intermediateValue); // obliczenie wartosci gamma w zakresie wyjściowym [0.1 : 10]
-            Properties.Settings.Default.AutomaticBrightnessLevel = trackBar1.Value;
+            Properties.Settings.Default.AutomaticBrightnessLevel = automaticTrackBar.Value;
             Properties.Settings.Default.AutomaticBrightnessLevelFactor = gamma;
             Properties.Settings.Default.Save();
 
             ThreadWorker.userAutomaticBrightnessLevelFactor = Properties.Settings.Default.AutomaticBrightnessLevelFactor;
-            label5.Text = Properties.Settings.Default.AutomaticBrightnessLevel.ToString();
+            automaticBrightnessValue.Text = Properties.Settings.Default.AutomaticBrightnessLevel.ToString();
         }
 
 
@@ -267,17 +273,36 @@ namespace StudioDisplayBrightnessController
 
             if (checkBox.Checked)
             {
+                // also look into sending enable signal to monitor
+                Properties.Settings.Default.automaticBrightnessEnabled = true;
+                Properties.Settings.Default.Save();
+                ThreadWorker.automaticBrightnessEnabled = Properties.Settings.Default.automaticBrightnessEnabled;
+
+                manualTrackBar.Enabled = false;
+                automaticTrackBar.Enabled = true;
                 Logs.logInfo("Automatic brightness enabled.");
             }
             else
             {
+                Properties.Settings.Default.automaticBrightnessEnabled = false;
+                Properties.Settings.Default.Save();
+                ThreadWorker.automaticBrightnessEnabled = Properties.Settings.Default.automaticBrightnessEnabled;
+
+                manualTrackBar.Enabled = true;
+                automaticTrackBar.Enabled = false;
                 Logs.logInfo("Automatic brightness disabled.");
             }
         }
 
-        private void trackBar2_Scroll(object sender, EventArgs e)
+        private void manualTrackBar_ValueChanged(object sender, EventArgs e)
         {
+            Properties.Settings.Default.manualBrightness = manualTrackBar.Value*100; // to get normalised brightness 0-10,000
+            Properties.Settings.Default.Save();
 
+            ThreadWorker.manualBrightness = Properties.Settings.Default.manualBrightness;
+            manualBrightnessValue.Text = (Properties.Settings.Default.manualBrightness/100).ToString();
         }
     }
 }
+
+//pause thread and respons to trakcbar value change

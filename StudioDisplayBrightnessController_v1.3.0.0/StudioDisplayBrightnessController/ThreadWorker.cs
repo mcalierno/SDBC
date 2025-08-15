@@ -26,6 +26,9 @@ namespace StudioDisplayBrightnessController
         public static volatile float userAutomaticBrightnessLevelFactor = 1;
         public static volatile float userAmbientLightGammaCorrectionFactor = 1;
 
+        public static volatile int manualBrightness = 0;
+        public static bool automaticBrightnessEnabled = false;
+
         public static bool IsMonitorOpened()
         {
             return studioDisplayController.IsMonitorOpened();
@@ -65,6 +68,7 @@ namespace StudioDisplayBrightnessController
                 if (instance != null)
                 {
                     instance.setThreadActiveToFalse();
+                    instance = null;
                 }
             }
         }
@@ -150,39 +154,47 @@ namespace StudioDisplayBrightnessController
                 return;
             }
 
-            Logs.logInfo("ThreadWorker: SetMonitorBrightness: BEGIN");
-            int monitorBrightnessNormalizedNew;
-            while (
-                isThreadActive() &&
-                studioDisplayController.IsMonitorOpened() &&
-                ((monitorBrightnessNormalizedNew = CountMonitorBrightnessNormalized()) != studioDisplayController.GetMonitorBrightnessNormalized())
-                )
+            if (automaticBrightnessEnabled)
             {
-                Logs.logInfo("new: " + monitorBrightnessNormalizedNew + ", old: " + studioDisplayController.GetMonitorBrightnessNormalized());
-                if (monitorBrightnessNormalizedNew < studioDisplayController.GetMonitorBrightnessNormalized())
+                Logs.logInfo("ThreadWorker: SetMonitorBrightness: BEGIN");
+                int monitorBrightnessNormalizedNew;
+                while (
+                    isThreadActive() &&
+                    studioDisplayController.IsMonitorOpened() &&
+                    ((monitorBrightnessNormalizedNew = CountMonitorBrightnessNormalized()) != studioDisplayController.GetMonitorBrightnessNormalized())
+                    )
                 {
-                    if (Math.Abs(monitorBrightnessNormalizedNew - studioDisplayController.GetMonitorBrightnessNormalized()) > 18)
+                    Logs.logInfo("new: " + monitorBrightnessNormalizedNew + ", old: " + studioDisplayController.GetMonitorBrightnessNormalized());
+                    if (monitorBrightnessNormalizedNew < studioDisplayController.GetMonitorBrightnessNormalized())
                     {
-                        studioDisplayController.SetMonitorBrightnessNormalized(studioDisplayController.GetMonitorBrightnessNormalized() - 9);
+                        if (Math.Abs(monitorBrightnessNormalizedNew - studioDisplayController.GetMonitorBrightnessNormalized()) > 18)
+                        {
+                            studioDisplayController.SetMonitorBrightnessNormalized(studioDisplayController.GetMonitorBrightnessNormalized() - 9);
+                        }
+                        else
+                        {
+                            studioDisplayController.SetMonitorBrightnessNormalized(studioDisplayController.GetMonitorBrightnessNormalized() - 1);
+                        }
                     }
-                    else
+                    else if (monitorBrightnessNormalizedNew > studioDisplayController.GetMonitorBrightnessNormalized())
                     {
-                        studioDisplayController.SetMonitorBrightnessNormalized(studioDisplayController.GetMonitorBrightnessNormalized() - 1);
+                        if (Math.Abs(monitorBrightnessNormalizedNew - studioDisplayController.GetMonitorBrightnessNormalized()) > 18)
+                        {
+                            studioDisplayController.SetMonitorBrightnessNormalized(studioDisplayController.GetMonitorBrightnessNormalized() + 9);
+                        }
+                        else
+                        {
+                            studioDisplayController.SetMonitorBrightnessNormalized(studioDisplayController.GetMonitorBrightnessNormalized() + 1);
+                        }
                     }
                 }
-                else if (monitorBrightnessNormalizedNew > studioDisplayController.GetMonitorBrightnessNormalized())
-                {
-                    if (Math.Abs(monitorBrightnessNormalizedNew - studioDisplayController.GetMonitorBrightnessNormalized()) > 18)
-                    {
-                        studioDisplayController.SetMonitorBrightnessNormalized(studioDisplayController.GetMonitorBrightnessNormalized() + 9);
-                    }
-                    else
-                    {
-                        studioDisplayController.SetMonitorBrightnessNormalized(studioDisplayController.GetMonitorBrightnessNormalized() + 1);
-                    }
-                }
+                Logs.logInfo("ThreadWorker: SetMonitorBrightness: END");
             }
-            Logs.logInfo("ThreadWorker: SetMonitorBrightness: END");
+            else
+            {
+                Logs.logInfo("ThreadWorker: automatic brightness disabled, setting manual brightness level " + manualBrightness);
+                studioDisplayController.SetMonitorBrightnessNormalized(manualBrightness);
+            }
         }
 
 

@@ -1,3 +1,18 @@
+### Changes in this fork:
+Add option to disable automatic brightness.
+And controls for manually adjusting brightness.
+
+Investigating issues on startup:
+Ambient light sensor not working until light change
+monitor goes to lowest setting before slowly climbing
+
+Bugs:
+Previously set min is forgotten when reopening 'Settings'
+Main slider does nothing
+
+Also investigate:
+Adding keyboard controls for adjusting brightness
+
 # SDBC
 Studio Display Brightness Controller is an application that automatically controls the brightness of the Studio Display monitor using the built-in ambient light sensor. The application has been tested and works properly with a monitor that has firmware version 16.4. The author is not responsible for the operation of the application with firmware versions other than 16.4. The author has made every effort to ensure that the application works properly, however, he is not responsible for any damage caused by the incorrect use of this application.
 
@@ -28,16 +43,3 @@ Unzip file: StudioDisplayBrightnessController_v1.3.0.0.zip from Release section
 Run program StudioDisplayBrightnessController.exe
 
 
-### Changes in this fork:
-Add enable brightness toggle and slider to settings pane.
-
-Investigating issues on startup:
-Ambient light sensor not working until light change
-monitor goes to lowest setting before slowly climbing
-
-Related:
-Previously set min is forgotten when reopening 'Settings'
-Main slider does nothing
-
-Also investigate:
-Adding keyboard controls for adjusting brightness

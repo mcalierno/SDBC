@@ -40,8 +40,6 @@ namespace StudioDisplayBrightnessController
                         7,     // Index
                         7);    // Length
 
-        
-        
         private volatile int monitorBrightnessNormalized = 0;
         private volatile int monitorAmbientLight = 0;
         private volatile uint lastRead = 0;
@@ -326,7 +324,7 @@ namespace StudioDisplayBrightnessController
 
 
 
-
+    
 
 
 
