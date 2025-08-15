@@ -1,14 +1,14 @@
 ### Changes in this fork:
-Add option to disable automatic brightness.
-And controls for manually adjusting brightness.
+Implemented:
+- Add option to disable automatic brightness.
+- And controls for manually adjusting brightness.
+- Improved UI
 
-Investigating issues on startup:
-Ambient light sensor not working until light change
-monitor goes to lowest setting before slowly climbing
-
-Bugs:
-Previously set min is forgotten when reopening 'Settings'
-Main slider does nothing
+Investigating bugs:
+- Previously set min is forgotten when reopening 'Settings'
+- Ambient light sensor not working until light change
+- Monitor goes to lowest setting before slowly climbing
+- Automatic slider appears to do nothing
 
 Also investigate:
 Adding keyboard controls for adjusting brightness
