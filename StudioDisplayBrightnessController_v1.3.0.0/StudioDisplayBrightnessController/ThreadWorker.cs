@@ -166,7 +166,7 @@ namespace StudioDisplayBrightnessController
                     ((monitorBrightnessNormalizedNew = CountMonitorBrightnessNormalized()) != studioDisplayController.GetMonitorBrightnessNormalized())
                     )
                 {
-                    Logs.logInfo("new: " + monitorBrightnessNormalizedNew + ", old: " + studioDisplayController.GetMonitorBrightnessNormalized());
+                    Logs.logInfo("ThreadWorker: SetMonitorBrightness: New: " + monitorBrightnessNormalizedNew + ", Old: " + studioDisplayController.GetMonitorBrightnessNormalized());
                     if (monitorBrightnessNormalizedNew < studioDisplayController.GetMonitorBrightnessNormalized())
                     {
                         if (Math.Abs(monitorBrightnessNormalizedNew - studioDisplayController.GetMonitorBrightnessNormalized()) > 18)
@@ -215,11 +215,6 @@ namespace StudioDisplayBrightnessController
                 monitorBrightnessNormalizedNew = userMaxMonitorBrightness;
             }
 
-            // FIXME
-            // Ambient light is always zero
-            // Then when 'Settings' window is opened, 'monitorBrightnessNormalizedNew' is set to 0
-            Logs.logInfo("ThreadWorker: CountMonitorBrightnessNormalized: monitorAmbientLightWithGammaCorrection: " + monitorAmbientLightWithGammaCorrection);
-            Logs.logInfo("ThreadWorker: CountMonitorBrightnessNormalized: monitorBrightnessNormalizedNew: " + monitorBrightnessNormalizedNew);
             return monitorBrightnessNormalizedNew;
         }
 

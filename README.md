@@ -1,13 +1,15 @@
 ### Changes in this fork:
-Implemented:
+The original developer has mentioned they no longer have time to maintain this app.
+
+Implemented changes:
 - Add option to disable automatic brightness.
 - And controls for manually adjusting brightness.
 - Improved UI
 
-Bug Fixes:
-- 'User minimum brightness' is forgotten when reopening 'Settings'
-- On app start brightness is set to 0 before slowly climbing
-- Ambient light sensor not working until light change
+Bugs:
+- FIXED: 'User minimum brightness' forgotten when reopening 'Settings'
+- FIXED: On app start brightness is set to 0 before slowly climbing
+- FIXED: Ambient light sensor not working until light change
 
 
 # SDBC

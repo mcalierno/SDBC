@@ -52,7 +52,7 @@ namespace StudioDisplayBrightnessController
         public void SetInitBrightness(int initialBrightness)
         {
             this.monitorBrightnessNormalized = initialBrightness;
-            Logs.logInfo($"StudioDisplayController initialised with normalised brightness: {initialBrightness}");
+            Logs.logInfo($"StudioDisplayController: Initialised with normalised brightness: {initialBrightness}");
         }
 
         public bool OpenMonitor()

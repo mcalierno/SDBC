@@ -11,8 +11,8 @@ namespace StudioDisplayBrightnessController
 {
     class Logs
     {
-        private static bool LOGGING_INFO_ACTIVE = true;
-        private static bool LOGGING_WARNING_ACTIVE = true;
+        private static bool LOGGING_INFO_ACTIVE = false;
+        private static bool LOGGING_WARNING_ACTIVE = false;
         private static bool LOGGING_ERROR_ACTIVE = true;
 
         private static String LOG_FILE = "logs.txt";
