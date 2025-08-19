@@ -4,14 +4,11 @@ Implemented:
 - And controls for manually adjusting brightness.
 - Improved UI
 
-Investigating bugs:
-- Previously set min is forgotten when reopening 'Settings'
+Bug Fixes:
+- 'User minimum brightness' is forgotten when reopening 'Settings'
+- On app start brightness is set to 0 before slowly climbing
 - Ambient light sensor not working until light change
-- Monitor goes to lowest setting before slowly climbing
-- Automatic slider appears to do nothing
 
-Also investigate:
-Adding keyboard controls for adjusting brightness
 
 # SDBC
 Studio Display Brightness Controller is an application that automatically controls the brightness of the Studio Display monitor using the built-in ambient light sensor. The application has been tested and works properly with a monitor that has firmware version 16.4. The author is not responsible for the operation of the application with firmware versions other than 16.4. The author has made every effort to ensure that the application works properly, however, he is not responsible for any damage caused by the incorrect use of this application.
