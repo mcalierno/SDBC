@@ -90,6 +90,8 @@ namespace StudioDisplayBrightnessController
 
         public void ThreadWorkerRun()
         {
+            studioDisplayController.SetInitBrightness(CountMonitorBrightnessNormalized());
+            
             lock (THREAD_RUN_LOCK)
             {
                 try
